@@ -1,6 +1,7 @@
 package com.coolweather.android;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -75,7 +76,15 @@ public class ChooseAreaFragment extends Fragment {
                     queryCities();
                 }else if(currentLevel == LEVEL_CITY){
                     selectedCity = cityList.get(position);
-                    queryCities();
+                    queryCounties();
+                }else if(currentLevel == LEVEL_COUNTY){//如果是县级就打开相应的天气界面;
+//                    Log.i("LINE:", "onItemClick: LEVEL_COUNTY IN");
+                    String weatherId = countyList.get(position).getWeatherId();
+                    Intent intent = new Intent(getActivity(),WeatherActivity.class);
+                    intent.putExtra("weather_id",weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
+//                    Log.i("LINE:", "onItemClick: " + Utility.getFileLineMethod());
                 }
             }
         });
@@ -136,7 +145,7 @@ public class ChooseAreaFragment extends Fragment {
     //查询选中市内所有的县,优先从数据库查询,查到就通知listView显示出来,如果没有查询到再去服务器上查询;
     private void queryCounties(){
         titleText.setText(selectedCity.getCityName());
-        backButton.setVisibility(View.GONE);
+        backButton.setVisibility(View.VISIBLE);
         countyList = LitePal.where("cityid = ?",String.valueOf(selectedCity.getId())).find(County.class);
         if(countyList.size() > 0){
             dataList.clear();
@@ -149,7 +158,7 @@ public class ChooseAreaFragment extends Fragment {
         }else{
             int provinceCode = selectedProvince.getProvinceCode();
             int cityCode = selectedCity.getCityCode();
-            String address = "http://guolin.tech/api/china"+provinceCode+"/"+cityCode;
+            String address = "http://guolin.tech/api/china/"+provinceCode+"/"+cityCode;
             queryFromServer(address,"county");
         }
     }

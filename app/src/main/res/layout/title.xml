@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:anroid="http://schemas.android.com/apk/res/android"
+    anroid:layout_width="match_parent"
+    anroid:layout_height="?attr/actionBarSize">
+
+    <TextView
+        anroid:id="@+id/title_city"
+        anroid:layout_width="wrap_content"
+        anroid:layout_height="wrap_content"
+        anroid:layout_centerInParent="true"
+        anroid:textColor="#fff"
+        anroid:textSize="20sp"/>
+
+    <TextView
+        anroid:id="@+id/title_update_time"
+        anroid:layout_width="wrap_content"
+        anroid:layout_height="wrap_content"
+        anroid:layout_marginRight="10dp"
+        anroid:layout_alignParentRight="true"
+        anroid:layout_centerVertical="true"
+        anroid:textColor="#fff"
+        anroid:textSize="16sp"/>
+</RelativeLayout>
