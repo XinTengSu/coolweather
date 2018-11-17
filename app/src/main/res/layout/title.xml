@@ -4,6 +4,15 @@
     anroid:layout_width="match_parent"
     anroid:layout_height="?attr/actionBarSize">
 
+    <Button
+        anroid:id="@+id/nav_button"
+        anroid:layout_width="30dp"
+        anroid:layout_height="30dp"
+        anroid:layout_marginLeft="10dp"
+        anroid:layout_alignParentLeft="true"
+        anroid:layout_centerVertical="true"
+        anroid:background="@drawable/ic_home"/>
+
     <TextView
         anroid:id="@+id/title_city"
         anroid:layout_width="wrap_content"
